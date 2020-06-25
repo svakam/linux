@@ -16,6 +16,7 @@ Jason Cannon: Professional system admin, consultant, author
 1. [Linux Shell](#linux-shell)
 1. [Basic Linux Commands](#basic-linux-commands)
 1. [Working With Directories](#working-with-directories)
+1. [Listing Files and Understanding LS Output](#listing-files-and-understanding-ls-output)
 
 ## What is Linux?
 An operating system (OS), which is a collection of software that manages hardware resources and provides an environment to run applications. Allows applications to store information, send documents to printers, interact with users, and more. 
@@ -106,7 +107,7 @@ The shell, AKA command line interpreter (CLI), is an application or program that
 
 ### The Prompt
 
-If logged in as a user, will see `[username@name-of-linux-system-connected] ~]$` (ends in `~`). Day-to-day activities are done and user-level applications are controlled using normal accounts like this. 
+If logged in as a user, will see `[username@name-of-linux-system-connected] ~]$` (ends in `$`). Day-to-day activities are done and user-level applications are controlled using normal accounts like this. 
 
 If logged in as a superuser, will see `[root@name-of-linux-system:~]#` (ends in `#`). The superuser is AKA the root account. Root access is typically restricted to system admins. Access may be required to install, start, or stop system-level applications. 
 
@@ -134,14 +135,50 @@ Shell prompts can vary greatly in appearance.
     - If it's found in multiple directories (i.e. `/bin/cat` and `/usr/local/bin`), the command will execute in the directory it's found in first in PATH. 
 - `man`: displays the online manual. If command name given as argument, displays manual for that command
   - `-k`: search man pages
-  - Using 'Enter' key goes down the file by 1 line
-  - Using 'Space' goes down the file by 1 page
-  - Using 'g' goes to the very top of the page
-  - Using 'G' goes to the very bottom
-  - Using 'q' quits out of the file
-- `exit`: exits the shell or current session
-- `clear`: clears the screen
-- `which`: locate a command (i.e. `which cat` -> `/bin/cat`). 
-- `--help`, `-h`: ask commands for help
+  - Using 'Enter' key goes down the file by 1 line. 
+  - Using 'Space' goes down the file by 1 page. 
+  - Using 'g' goes to the very top of the page. 
+  - Using 'G' goes to the very bottom. 
+  - Using 'q' quits out of the file. 
+- `exit`: exits the shell or current session. 
+- `clear`: clears the screen. 
+- `which`: locate a command (i.e. `which cat` -> `/bin/cat`).
+  - The location of a command can be used in place of the command itself (i.e. `cat sales.data` will show the file sales.data, as does `/bin/cat sales.data`). 
+- `--help`, `-h`: ask commands for help. 
 
 ## Working With Directories
+Directories are containers for files and other directories. They provide a tree-like structure and can be accessed by name or shortcut. 
+
+- `.`: this directory. 
+- `..`: parent directory. 
+- `cd -`: change to previous directory. 
+  - `echo $OLDPWD`: `$OLDPWD` variable holds the directory previously in, thus performing `echo` on this lists that directory. 
+- `/`: directory separator; denotes the ending of a directory. 
+- `./<program>`: executes a program from the current directory. 
+- `mkdir [-p] <name>`: create a directory. 
+  - `[-p]` is an optional argument that creates each directory listed as a new parent (i.e. `mkdir -p one/two/three` creates `one` as a new directory, `two` directory as a child of `one`, and `three` as a child of two). 
+- `rmdir [-p] <name>`: remove directory (empty only). 
+- `rm -rf <name>`: recursively removes directory and everything below it. 
+
+## Listing Files and Understanding LS Output
+- `ls`: lists basic information about a directory's content and information. Doesn't specify file type. 
+- `ls -l`: lists detailed information about a current directory's content and info. 
+  - Example: `ls -l` -> `-rw-rw-r-- 1 vik users 10400 Sep 27 08:52 sales.data`
+    - From left to right: permissions, number of links, owner name, group name, number of bytes in the file, last modified (date and time), file name
+- `ls -a`: lists basic information, inclusive of hidden files/folders. 
+- `ls -l -a`: lists detailed information of both visible and hidden files/folders. 
+  - Shorthand is `ls -la`. 
+- `ls -F`: lists directory content along with file types. 
+  - `-F` appends specifying character to directory/file name to reveal its file type. Characters:
+    - `/`: directory
+    - `@`: link
+    - `*`: executable
+- `ls -t`: lists files by time. 
+- `ls -r`: reverse order. 
+- `ls -latr`: long listing including all files reverse-sorted by time. Especially useful if need to list an overflowing number of files in a directory, but sorted from least to most recently modified. `ls -lat` shows most to least recently modified order. 
+- `ls -R`: lists files recursively; lists current directory's files and directories' files below, recursively. 
+- `tree`: lists files recursively in visual format. 
+  - `tree -d`: lists directories only. 
+  - `tree -C`: colorizes visual output. 
+- `ls --color`: basic list output colorized by file type. 
+- To circumvent issues with file names with spaces, encapsulate file name in single or double quotes (i.e. `ls -l 'my notes.txt'`, `ls -l "my notes.txt'`) or escape the space with a backslash `\` (i.e. `ls -l my\ notes.txt`). 
