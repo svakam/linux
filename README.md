@@ -100,4 +100,7 @@ Application installations won't always follow this strict pattern. The following
 ```
 
 ## Linux Shell
-The default interface to Linux. 
+The shell, AKA command line interpreter (CLI), is an application or program that accepts and executes commands given to it. The shell is the default interface to Linux, especially when connecting to a remote Linux server via an SSH (Secure SHell). Server distros do not include GUIs, and thus interacting with it via shell is required. Desktop distros have both GUIs and CLIs. If interacting first through GUI, find the terminal emulator to gain access to the shell if needed. 
+
+### The Prompt
+
