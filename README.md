@@ -14,6 +14,8 @@ Jason Cannon: Professional system admin, consultant, author
 1. [Log into Linux and SSH](#getting-connected-log-into-linux-ssh)
 1. [Common Directories](#common-directories)
 1. [Linux Shell](#linux-shell)
+1. [Basic Linux Commands](#basic-linux-commands)
+1. [Working With Directories](#working-with-directories)
 
 ## What is Linux?
 An operating system (OS), which is a collection of software that manages hardware resources and provides an environment to run applications. Allows applications to store information, send documents to printers, interact with users, and more. 
@@ -104,3 +106,42 @@ The shell, AKA command line interpreter (CLI), is an application or program that
 
 ### The Prompt
 
+If logged in as a user, will see `[username@name-of-linux-system-connected] ~]$` (ends in `~`). Day-to-day activities are done and user-level applications are controlled using normal accounts like this. 
+
+If logged in as a superuser, will see `[root@name-of-linux-system:~]#` (ends in `#`). The superuser is AKA the root account. Root access is typically restricted to system admins. Access may be required to install, start, or stop system-level applications. 
+
+Shorthands abstract away some of the complexity in prompts. 
+- The tilde `~` represents a home directory. Used by itself, it represents the current user's home or account directory. But occasionally, accounts can be represented by other entities, like servers. 
+  - `~vik` = /home/vik
+  - `~bob` = /home/bob
+  - `~root` = /root
+  - `~ftp` = /srv/ftp (server account lives in /srv)
+
+Shell prompts can vary greatly in appearance. 
+
+## Basic Linux Commands
+- `ls`: lists directory contents
+  - `-l`: long listing format: appends more detailed information on the content
+- `cd`: changes current directory. Without an argument after, goes back to home directory. 
+- `pwd`: displays present working directory
+- `cat`: concatenates and displays files of the file provided as an argument
+  - `tac`: displays files in reverse order
+- `echo`: displays arguments to the screen; displays contents of variables, such as environment variables
+  - Environment variables are storage locations that contain name-value pairs. All the letters in the variable are upper-cased (i.e. `$VAR_NAME`). 
+  - PATH is an environment variable that controls the command search path and contains a list of directories that are separated by a `:`. If a command is entered into the prompt, the command is searched for in the PATH. If PATH = `/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:/home/jason/bin`, every directory will be searched for the command. 
+    - If it's found in one, it will execute there. 
+    - If it isn't found, the prompt will display `command not found`. 
+    - If it's found in multiple directories (i.e. `/bin/cat` and `/usr/local/bin`), the command will execute in the directory it's found in first in PATH. 
+- `man`: displays the online manual. If command name given as argument, displays manual for that command
+  - `-k`: search man pages
+  - Using 'Enter' key goes down the file by 1 line
+  - Using 'Space' goes down the file by 1 page
+  - Using 'g' goes to the very top of the page
+  - Using 'G' goes to the very bottom
+  - Using 'q' quits out of the file
+- `exit`: exits the shell or current session
+- `clear`: clears the screen
+- `which`: locate a command (i.e. `which cat` -> `/bin/cat`). 
+- `--help`, `-h`: ask commands for help
+
+## Working With Directories
