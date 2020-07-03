@@ -168,7 +168,7 @@ Directories are containers for files and other directories. They provide a tree-
 - `ls -a`: lists basic information, inclusive of hidden files/folders. 
 - `ls -l -a`: lists detailed information of both visible and hidden files/folders. 
   - Shorthand is `ls -la`. 
-- `ls -F`: lists directory content along with file types. 
+- `ls -F`: lists directory content along with file types.  
   - `-F` appends specifying character to directory/file name to reveal its file type. Characters:
     - `/`: directory
     - `@`: link
